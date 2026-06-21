@@ -91,7 +91,7 @@ spanish_tagged_sentences = [
     [("Nosotros", "PRON"), ("leemos", "VERB"), ("un", "DET"), ("libro", "NOUN"), ("interesante", "ADJ"), (".", "PUNCT")],
     [("¿", "PUNCT"), ("Dónde", "ADV"), ("está", "AUX"), ("el", "DET"), ("baño", "NOUN"), ("?", "PUNCT")],
     [("Hoy", "ADV"), ("hace", "VERB"), ("mucho", "ADJ"), ("calor", "NOUN"), (".", "PUNCT")],
-    [("Juan", "PROPN"), ("y", "CONJ"), ("María", "PROPN"), ("van", "VERB"), ("al", "ADP"), ("mercado", "NOUN"), (".", "PUNCT")],
+    [("Juan", "PROPN"), ("y", "CCONJ"), ("María", "PROPN"), ("van", "VERB"), ("al", "ADP"), ("mercado", "NOUN"), (".", "PUNCT")],
     [("El", "DET"), ("perro", "NOUN"), ("corre", "VERB"), ("rápido", "ADV"), (".", "PUNCT")],
     [("Tengo", "VERB"), ("dos", "NUM"), ("hermanos", "NOUN"), (".", "PUNCT")],
     [("Ella", "PRON"), ("trabaja", "VERB"), ("en", "ADP"), ("una", "DET"), ("oficina", "NOUN"), ("grande", "ADJ"), (".", "PUNCT")],
@@ -106,7 +106,7 @@ spanish_tagged_sentences = [
     [("Esta", "DET"), ("casa", "NOUN"), ("tiene", "VERB"), ("tres", "NUM"), ("habitaciones", "NOUN"), (".", "PUNCT")],
     [("El", "DET"), ("sol", "NOUN"), ("brilla", "VERB"), ("en", "ADP"), ("el", "DET"), ("cielo", "NOUN"), (".", "PUNCT")],
     [("Ayer", "ADV"), ("fuimos", "VERB"), ("al", "ADP"), ("parque", "NOUN"), (".", "PUNCT")],
-    [("Ellos", "PRON"), ("compraron", "VERB"), ("pan", "NOUN"), ("y", "CONJ"), ("leche", "NOUN"), (".", "PUNCT")],
+    [("Ellos", "PRON"), ("compraron", "VERB"), ("pan", "NOUN"), ("y", "CCONJ"), ("leche", "NOUN"), (".", "PUNCT")],
     [("Mi", "DET"), ("padre", "NOUN"), ("cocina", "VERB"), ("paella", "NOUN"), ("los", "DET"), ("domingos", "NOUN"), (".", "PUNCT")],
     [("El", "DET"), ("libro", "NOUN"), ("está", "AUX"), ("sobre", "ADP"), ("la", "DET"), ("mesa", "NOUN"), (".", "PUNCT")],
     [("Quiero", "VERB"), ("aprender", "VERB"), ("español", "NOUN"), (".", "PUNCT")],
@@ -119,10 +119,12 @@ spanish_tagged_sentences = [
     [("La", "DET"), ("ciudad", "NOUN"), ("tiene", "VERB"), ("muchos", "ADJ"), ("museos", "NOUN"), (".", "PUNCT")],
     [("El", "DET"), ("tren", "NOUN"), ("llega", "VERB"), ("a", "ADP"), ("las", "DET"), ("diez", "NUM"), (".", "PUNCT")],
     [("Hace", "VERB"), ("frío", "NOUN"), ("en", "ADP"), ("invierno", "NOUN"), (".", "PUNCT")],
-    [("Puedo", "VERB"), ("leer", "VERB"), ("y", "CONJ"), ("escribir", "VERB"), ("en", "ADP"), ("español", "NOUN"), (".", "PUNCT")],
+    [("Puedo", "VERB"), ("leer", "VERB"), ("y", "CCONJ"), ("escribir", "VERB"), ("en", "ADP"), ("español", "NOUN"), (".", "PUNCT")],
     [("Tú", "PRON"), ("tienes", "VERB"), ("una", "DET"), ("bicicleta", "NOUN"), ("nueva", "ADJ"), (".", "PUNCT")],
     [("El", "DET"), ("equipo", "NOUN"), ("juega", "VERB"), ("bien", "ADV"), (".", "PUNCT")],
     [("Este", "DET"), ("problema", "NOUN"), ("es", "AUX"), ("difícil", "ADJ"), (".", "PUNCT")],
     [("La", "DET"), ("comida", "NOUN"), ("está", "AUX"), ("deliciosa", "ADJ"), (".", "PUNCT")],
     [("Me", "PRON"), ("gusta", "VERB"), ("caminar", "VERB"), ("por", "ADP"), ("la", "DET"), ("playa", "NOUN"), (".", "PUNCT")]
 ]
+
+# TODO: Add corpus consistency checks

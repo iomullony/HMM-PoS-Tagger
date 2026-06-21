@@ -1,2 +1,7 @@
 nltk>=3.8
 conllu
+
+argparse
+os
+re
+LidstoneProbDist
