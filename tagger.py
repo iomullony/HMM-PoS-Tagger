@@ -5,6 +5,8 @@ import re
 from conllu import parse
 from nltk.tag import hmm
 from nltk.probability import LidstoneProbDist
+from collections import defaultdict
+
 from spanish_corpus import (
     spanish_tagged_sentences,
     spanish_corpus_sentences,
@@ -20,7 +22,9 @@ ANCORA_PATH = "es_ancora-ud-train.conllu"
 def tokenize_sentence(sentence: str):
     sentence = sentence.replace("¿", " ¿ ").replace("¡", " ¡ ")
     sentence = re.sub(r"([.,;:!?()])", r" \1 ", sentence)
+
     tokens = [token for token in sentence.split() if token]
+
     return tokens
 
 
@@ -29,6 +33,7 @@ def split_corpus(sentences, ratio=TRAIN_RATIO, seed=RANDOM_SEED):
     shuffled_sentences = list(sentences)
     random.Random(seed).shuffle(shuffled_sentences)
     split_index = int(len(shuffled_sentences) * ratio)
+
     return shuffled_sentences[:split_index], shuffled_sentences[split_index:]
 
 
@@ -45,8 +50,8 @@ def load_ancora_tagged_sentences(conllu_path=ANCORA_PATH):
         tagged_tokens = []
         for token in sent:
             form = token.get("form")
-            upos = token.get("upos") or "X"
-            if form is None:
+            upos = token.get("upos")
+            if form is None or not upos or upos == "_":
                 continue
             tagged_tokens.append((form, upos))
         if tagged_tokens:
@@ -83,6 +88,30 @@ def train_hmm_tagger(train_sentences):
     )
 
 
+# This is a more detailed evaluation
+def print_detailed_evaluation(tagger, test_sentences):
+    correct = defaultdict(int)
+    total   = defaultdict(int)
+
+    for sentence in test_sentences:
+        tokens   = [word for word, _ in sentence]
+        gold     = [tag  for _, tag  in sentence]
+        predicted = [tag  for _, tag  in tagger.tag(tokens)]
+
+        for g, p in zip(gold, predicted):
+            total[g] += 1
+            if g == p:
+                correct[g] += 1
+
+    print("Per-tag accuracy:")
+    print(f"  {'Tag':<12} {'Correct':>7} {'Total':>7} {'Accuracy':>9}")
+    print("  " + "-" * 40)
+    for tag in sorted(total):
+        acc = correct[tag] / total[tag] if total[tag] else 0
+        print(f"  {tag:<12} {correct[tag]:>7} {total[tag]:>7} {acc:>9.2%}")
+    print()
+
+
 # Evaluates the trained tagger on the test set
 def print_evaluation(tagger, train_sentences, test_sentences):
     accuracy = tagger.accuracy(test_sentences)
@@ -91,6 +120,7 @@ def print_evaluation(tagger, train_sentences, test_sentences):
     print(f"Train sentences: {len(train_sentences)}")
     print(f"Test sentences:  {len(test_sentences)}")
     print(f"Accuracy:       {accuracy:.2%}\n")
+    print_detailed_evaluation(tagger, test_sentences)
 
     print("Test sentence tagging samples:")
     for sentence in test_sentences[:5]:
@@ -113,9 +143,11 @@ def print_corpus_translation_examples():
 # Tags a custom sentence
 def tag_text(tagger, text):
     tokens = tokenize_sentence(text)
+
     print("Input sentence:", text)
     print("Tokens:", tokens)
     print("Tagged output:", tagger.tag(tokens))
+
     return tokens
 
 
@@ -146,6 +178,7 @@ def main():
     tagger = train_hmm_tagger(train_sentences)
 
     print_evaluation(tagger, train_sentences, test_sentences)
+    
     if args.show_translations:
         print_corpus_translation_examples()
 

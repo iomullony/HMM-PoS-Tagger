@@ -126,5 +126,3 @@ spanish_tagged_sentences = [
     [("La", "DET"), ("comida", "NOUN"), ("está", "AUX"), ("deliciosa", "ADJ"), (".", "PUNCT")],
     [("Me", "PRON"), ("gusta", "VERB"), ("caminar", "VERB"), ("por", "ADP"), ("la", "DET"), ("playa", "NOUN"), (".", "PUNCT")]
 ]
-
-# TODO: Add corpus consistency checks
